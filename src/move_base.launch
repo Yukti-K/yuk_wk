@@ -1,0 +1,16 @@
+<launch>
+
+    
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <remap from ="map" to="/rtabmap/proj_map" />
+    <rosparam file="$(find aurora_2dnav)/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find aurora_2dnav)/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find aurora_2dnav)/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find aurora_2dnav)/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(find aurora_2dnav)/base_local_planner_params.yaml" command="load" />
+ </node>
+
+   <node pkg="tf" type="static_transform_publisher" name="d400_to_base" args="0 0 0 0 0 0 /d400_link /base_link 100"/>
+
+</launch> 
